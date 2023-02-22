@@ -62,4 +62,81 @@ start_box.visited = True
 queue.append(start_box)
 
 
+def game():
+    begin_search = False
+    target_box_set = False
+    searching = True
+    target_box = None
 
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            # mouse controlls
+            elif event.type == pygame.MOUSEMOTION:
+                x = pygame.mouse.get_pos()[0]
+                y = pygame.mouse.get_pos()[1]
+                # Draw wall
+                if event.buttons[0]:
+                    i = x // box_width
+                    j = y // box_height
+                    grid[i][j].wall = True
+                # set target
+                if event.buttons[2] and not target_box_set:
+                    i = x // box_width
+                    j = y // box_height
+                    target_box = grid[i][j]
+                    target_box.target = True
+                    target_box_set = True
+            # start algorithm
+            if event.type == pygame.KEYDOWN and target_box_set:
+                begin_search = True
+
+        if begin_search:
+            if len(queue) > 0 and searching:
+                current_box = queue.pop(0)
+                current_box.visited = True
+                if current_box == target_box:
+                    searching = False
+                    while current_box.prior != start_box:
+                        path.append(current_box.prior)
+                        current_box = current_box.prior
+                else:
+                    for neighbour in current_box.neighbours:
+                        if not neighbour.queued and not neighbour.wall:
+                            neighbour.queued = True
+                            neighbour.prior = current_box
+                            queue.append(neighbour)
+            else:
+                if searching:
+                    Tk().wm_withdraw()
+                    messagebox.showinfo("No Solution", "There is no solutios!")
+                    searching = False
+
+        window.fill((0, 0, 0))
+
+        for i in range(columns):
+            for j in range(rows):
+                box = grid[i][j]
+                box.draw(window, (20, 20, 20))
+
+                if box.queued:
+                    box.draw(window, (200, 0, 0))
+                if box.visited:
+                    box.draw(window, (0, 200, 0))
+
+                if box in path:
+                    box.draw(window, (0, 0, 200))
+
+                if box.start:
+                    box.draw(window, (0, 200, 200))
+                if box.wall:
+                    box.draw(window, (90, 90, 90))
+                if box.target:
+                    box.draw(window, (200, 200, 0))
+
+        pygame.display.flip()
+
+
+game()
