@@ -2,13 +2,13 @@ from tkinter import messagebox, Tk
 import pygame
 import sys
 
-window_width = 500
-window_height = 500
+window_width = 600
+window_height = 600
 
 window = pygame.display.set_mode((window_width, window_height))
 
-columns = 25
-rows = 25
+columns = 30
+rows = 30
 
 box_width = window_width // columns
 box_height = window_height // rows
@@ -89,10 +89,30 @@ def game():
                     target_box = grid[i][j]
                     target_box.target = True
                     target_box_set = True
+            # elif on key r reset grid.walls to False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.key.key_code('r'):
+                for i in range(columns):
+                    for j in range(rows):
+                        grid[i][j].wall = False
+                        grid[i][j].queued = False
+                        grid[i][j].visited = False
+                        grid[i][j].prior = None
+                        grid[i][j].target = False
+                        grid[i][j].start = False
+                        queue.clear()
+                        path.clear()
+                        grid[0][0].start = True
+                        grid[0][0].visited = True
+                        queue.append(grid[0][0])
+                        target_box_set = False
+                        begin_search = False
+                        searching = True
             # start algorithm
             if event.type == pygame.KEYDOWN and target_box_set:
                 begin_search = True
-
+            elif event.type == pygame.KEYDOWN and not target_box_set and not event.key == pygame.key.key_code('r'):
+                Tk().wm_withdraw()
+                messagebox.showinfo("No Target", "Please set a target!")
         if begin_search:
             if len(queue) > 0 and searching:
                 current_box = queue.pop(0)
