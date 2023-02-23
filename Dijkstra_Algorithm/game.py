@@ -131,7 +131,7 @@ def game():
             else:
                 if searching:
                     Tk().wm_withdraw()
-                    messagebox.showinfo("No Solution", "There is no solutios!")
+                    messagebox.showinfo("No Solution", "There is no solution!")
                     searching = False
 
         window.fill((0, 0, 0))
