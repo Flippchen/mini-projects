@@ -4,4 +4,5 @@ This repository contains a collection of mini-projects that I have worked on. Th
 ## Projects
 ### 1. The Dijkstra Algorithm as a simple pygame
 ### 2. The simplest Text-To-Speech with Google
+### 3. Read all WI-FI passwords on Windows
 
