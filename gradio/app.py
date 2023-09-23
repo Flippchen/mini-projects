@@ -14,6 +14,7 @@ model = hub.load("efficientnet-lite4")
 # loads the labels text file
 labels = json.load(open("labels_map.txt", "r"))
 
+
 # sets image file dimensions to 224x224 by resizing and cropping image from center
 def pre_process_edgetpu(img, dims):
     output_height, output_width, _ = dims
@@ -24,6 +25,7 @@ def pre_process_edgetpu(img, dims):
     img -= [127.0, 127.0, 127.0]
     img /= [128.0, 128.0, 128.0]
     return img
+
 
 # resizes the image with a proportional scale
 def resize_with_aspectratio(img, out_height, out_width, scale=87.5, inter_pol=cv2.INTER_LINEAR):
@@ -39,6 +41,7 @@ def resize_with_aspectratio(img, out_height, out_width, scale=87.5, inter_pol=cv
     img = cv2.resize(img, (w, h), interpolation=inter_pol)
     return img
 
+
 # crops the image around the center based on given height and width
 def center_crop(img, out_height, out_width):
     height, width, _ = img.shape
@@ -51,6 +54,7 @@ def center_crop(img, out_height, out_width):
 
 
 sess = ort.InferenceSession(model.SerializeToString())
+
 
 def inference(img):
     print(type(img))
@@ -70,6 +74,7 @@ def inference(img):
 
     print(resultdic)
     return resultdic
+
 
 title = "Porsche Classifier"
 description = "This is a classifier for Porsche cars."
