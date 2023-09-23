@@ -23,4 +23,4 @@ This is a simple application that uses pytube to download YouTube videos. The ap
 ### 10. An example on how a Perceptron works
 This is a simple application that shows how a perceptron works.
 ### 11. Keras first steps
-Shows how to create a simple model using Keras.
+Shows how to create a simple models using Keras.
