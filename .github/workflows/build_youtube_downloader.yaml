@@ -21,7 +21,7 @@ jobs:
     - name: Install Dependencies
       run: |
         pip install pyinstaller pytube tk
-        pip install youtube_downloader/requirements.txt
+        pip install -r youtube_downloader/requirements.txt
 
     - name: Build Executable
       run: |
