@@ -19,3 +19,6 @@ This is a simple application that uses gradio to create a UI for a model.
 ### 8. A simple autokeras model
 This is a simple application that uses autokeras to create a model.
 ### 9. A YouTube downloader UI with exe build
+This is a simple application that uses pytube to download YouTube videos. The application is built into an exe file using pyinstaller.
+### 10. An example on how a Perceptron works
+This is a simple application that shows how a perceptron works.
