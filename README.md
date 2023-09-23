@@ -14,3 +14,8 @@ Just type in a message and the model will generate a response. Before you need t
 This is a simple application that encodes a file to Base64 and saves it to a file.
 ### 6. Keras Discord Notifier
 This is a simple application that notifies you on Discord after every epoch of your training. You need to change the discord webhook url in the `keras_model.py` file.
+### 7. A simple gradio UI
+This is a simple application that uses gradio to create a UI for a model.
+### 8. A simple autokeras model
+This is a simple application that uses autokeras to create a model.
+### 9. A YouTube downloader UI with exe build
