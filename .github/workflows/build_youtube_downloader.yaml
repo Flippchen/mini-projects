@@ -31,4 +31,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: yt_downloader_exe
-        path: dist/yt_downloader.exe
+        path: dist/downloader.exe
