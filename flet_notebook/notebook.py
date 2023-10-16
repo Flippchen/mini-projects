@@ -29,4 +29,5 @@ def main(page: Page) -> None:
     page.add(TextEditor())
 
 
-
+if __name__ == "__main__":
+    app(target=main)
