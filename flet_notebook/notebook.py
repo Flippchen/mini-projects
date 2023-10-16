@@ -4,7 +4,14 @@ from flet import (UserControl, TextField, InputBorder, Page, ControlEvent, app)
 class TextEditor(UserControl):
     def __init__(self) -> None:
         super().__init__()
-        self.textfield = TextField(multiline=True, autofocus=True, border=InputBorder.NONE, min_lines=40, on_change=self.save_text, cursor_color="yellow")
+        self.textfield = TextField(
+            multiline=True,
+            autofocus=True,
+            border=InputBorder.NONE,
+            min_lines=40,
+            on_change=self.save_text,
+            cursor_color="yellow"
+        )
 
     def save_text(self, e: ControlEvent) -> None:
         with open("save.txt", "w") as f:
