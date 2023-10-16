@@ -22,4 +22,11 @@ class TextEditor(UserControl):
         return self.textfield
 
 
+def main(page: Page) -> None:
+    page.title = "Text Editor"
+    page.scroll = True
+
+    page.add(TextEditor())
+
+
 
