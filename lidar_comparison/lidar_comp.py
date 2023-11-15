@@ -22,3 +22,58 @@ def plot_lines_triangles_shadows(num_lines, field_of_view_degrees, line_color, n
 
     # Initialize a list to store the number of lines hitting each cone
     cone_hits = [0] * num_triangles
+
+    # Plot each line with an angle offset and longer length
+    for angle in angles:
+        # Extend the lines until the end of the graph with scaling
+        angle += angle_offset / 100
+        end_point = [scaling_factor * np.cos(angle), scaling_factor * np.sin(angle)]
+
+        # Flag to check if a line has hit a cone
+        line_hit_cone = False
+
+        # Determine if the line intersects with any triangle (cone)
+        for i in range(1, num_triangles + 1):
+            base_x = 5 * i
+            # Check if the line intersects with the triangle
+            if (origin[0] <= base_x <= end_point[0] + origin[0]) or (origin[0] >= base_x >= end_point[0] + origin[0]):
+                # Calculate the intersection point
+                intersect_y = origin[1] + (base_x - origin[0]) * np.tan(angle)
+                if 0 <= intersect_y <= triangle_height:
+                    # Adjust end_point to the intersection
+                    end_point = [base_x - origin[0], intersect_y - origin[1]]
+                    # Increment the hit count for this cone
+                    cone_hits[i - 1] += 1
+                    line_hit_cone = True
+                    break
+
+        # Plot the line with the specified color
+        plt.plot([origin[0], end_point[0] + origin[0]], [origin[1], end_point[1] + origin[1]], color=line_color)
+
+    # Set plot limits
+    plt.xlim(0, 40)
+    plt.ylim(0, 5)
+
+    # Set aspect ratio to be equal
+    plt.gca().set_aspect('equal', adjustable='box')
+
+    # Plot triangles
+    for i in range(1, num_triangles + 1):
+        # Define the base of the triangle
+        base_x = 5 * i
+        base_y = 0
+
+        # Define the vertices of the triangle
+        triangle = [[base_x - triangle_width / 2, base_y],
+                    [base_x + triangle_width / 2, base_y],
+                    [base_x, base_y + triangle_height]]
+
+        # Plot the triangle
+        triangle = np.array(triangle)
+        plt.fill(triangle[:, 0], triangle[:, 1], 'orange')
+
+    # Add a title to the plot
+    plt.title(plot_name)
+    plt.show()
+
+    return cone_hits
