@@ -120,4 +120,16 @@ for config in different_lidar_configs:
     hits = plot_lines_triangles_shadows(**config)
     df[config["plot_name"]] = hits
 
+for config in different_lidar_configs:
+    hits = df[config["plot_name"]]
 
+    # Plotting
+    plt.plot(cone_distances, hits, label=config["plot_name"], marker='o', color=config["line_color"])
+
+# Finalizing the plot
+plt.title('LiDAR Performance Comparison')
+plt.xlabel('Cone Distance (m)')
+plt.ylabel('Number of Hits')
+plt.legend()
+plt.grid(True)
+plt.show()
