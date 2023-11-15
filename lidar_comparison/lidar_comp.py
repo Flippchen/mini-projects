@@ -108,3 +108,16 @@ different_lidar_configs = [
         "angle_offset": -5
     }
 ]
+
+# Placeholder for cone distances
+cone_distances = [5 * i for i in range(1, 9)]
+
+# Initialize DataFrame
+df = pd.DataFrame({"Cone Distance (m)": cone_distances})
+
+# Plotting each configuration and updating DataFrame
+for config in different_lidar_configs:
+    hits = plot_lines_triangles_shadows(**config)
+    df[config["plot_name"]] = hits
+
+
