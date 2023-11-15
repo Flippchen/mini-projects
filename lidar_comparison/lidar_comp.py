@@ -77,3 +77,34 @@ def plot_lines_triangles_shadows(num_lines, field_of_view_degrees, line_color, n
     plt.show()
 
     return cone_hits
+
+different_lidar_configs = [
+    {
+        "num_lines": 64,
+        "field_of_view_degrees": 45,
+        "line_color": 'green',
+        "num_triangles": 8,
+        "triangle_height": 0.4,
+        "triangle_width": 0.4,
+        "plot_name": "64 Channels, 45° FOV"
+    },
+    {
+        "num_lines": 128,
+        "field_of_view_degrees": 45,
+        "line_color": 'blue',
+        "num_triangles": 8,
+        "triangle_height": 0.4,
+        "triangle_width": 0.4,
+        "plot_name": "128 Channels, 45° FOV"
+    },
+    {
+        "num_lines": 128,
+        "field_of_view_degrees": 22.5,
+        "line_color": 'red',
+        "num_triangles": 8,
+        "triangle_height": 0.4,
+        "triangle_width": 0.4,
+        "plot_name": "128 Channels, 22.5° FOV",
+        "angle_offset": -5
+    }
+]
