@@ -24,3 +24,5 @@ This is a simple application that uses pytube to download YouTube videos. The ap
 This is a simple application that shows how a perceptron works.
 ### 11. Keras first steps
 Shows how to create a simple models using Keras.
+### 12. LiDAR data visualization
+This is a simple application that visualizes different LiDAR Setups in comparison to each other. Used for Formula Student Teams.
