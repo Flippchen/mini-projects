@@ -4,9 +4,9 @@ import pandas as pd
 from tabulate import tabulate
 
 
-def plot_lines_triangles_shadows(num_lines, field_of_view_degrees, line_color, num_triangles, triangle_height, triangle_width, plot_name, angle_offset=0):
+def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_triangles, triangle_height, triangle_width, plot_name, angle_offset=0):
     # Set the origin for all lines
-    origin = [0, 1.3]  # Move the origin to the left
+    origin = [0, 1.3]
 
     # Convert field of view to radians
     field_of_view_radians = np.radians(field_of_view_degrees)
@@ -17,7 +17,7 @@ def plot_lines_triangles_shadows(num_lines, field_of_view_degrees, line_color, n
     # Set a scaling factor for the line length
     scaling_factor = 40.0
 
-    # Set a larger figure size
+    # Set a large figure size
     plt.figure(figsize=(50, 10))
 
     # Initialize a list to store the number of lines hitting each cone
@@ -78,6 +78,7 @@ def plot_lines_triangles_shadows(num_lines, field_of_view_degrees, line_color, n
 
     return cone_hits
 
+
 different_lidar_configs = [
     {
         "num_lines": 64,
@@ -109,7 +110,7 @@ different_lidar_configs = [
     }
 ]
 
-# Placeholder for cone distances
+# Calculate the distance to each cone
 cone_distances = [5 * i for i in range(1, 9)]
 
 # Initialize DataFrame
@@ -117,7 +118,7 @@ df = pd.DataFrame({"Cone Distance (m)": cone_distances})
 
 # Plotting each configuration and updating DataFrame
 for config in different_lidar_configs:
-    hits = plot_lines_triangles_shadows(**config)
+    hits = plot_lines_and_shadows(**config)
     df[config["plot_name"]] = hits
 
 for config in different_lidar_configs:
@@ -133,7 +134,6 @@ plt.ylabel('Number of Hits')
 plt.legend()
 plt.grid(True)
 plt.show()
-
 
 # Set index for DataFrame
 df.set_index("Cone Distance (m)", inplace=True)
