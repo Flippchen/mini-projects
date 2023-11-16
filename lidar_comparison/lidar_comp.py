@@ -133,3 +133,13 @@ plt.ylabel('Number of Hits')
 plt.legend()
 plt.grid(True)
 plt.show()
+
+
+# Set index for DataFrame
+df.set_index("Cone Distance (m)", inplace=True)
+
+# Save the dataframe to an Excel file
+df.to_excel("cone_hits.xlsx")
+
+# Print the DataFrame
+print(tabulate(df, headers='keys', tablefmt='psql'))
