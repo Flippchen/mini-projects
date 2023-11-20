@@ -144,7 +144,7 @@ different_lidar_configs = different_lidar_configs[:1]
 cone_distances = [5 * i for i in range(1, 9)]
 
 # Define the coordinates for the car envelope
-image_envelope_coords = [(0.0, 0.4), (0.3, 0.4), (0.3, 0.8), (0.0, 0.8)]
+image_envelope_coords = [(0.2,0.6), (1.2,0.95), (2.3, 0.85), (2.3, 0.35), (1.2, 0.2), (1, 0.2), (1, 0.2), (0.2, 0.6)]
 
 # Initialize DataFrame
 df = pd.DataFrame({"Cone Distance (m)": cone_distances})
