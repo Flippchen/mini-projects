@@ -15,6 +15,7 @@ def add_image_to_plot(ax, img, zoom, x_offset, y_offset, envelope_coords):
     # Add the image to the plot
     ax.add_artist(ab)
 
+    # Plot car envelope
     envelope = Polygon(envelope_coords)
     x, y = envelope.exterior.xy
     ax.plot(x, y, color="purple")
@@ -93,6 +94,7 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
         triangle = np.array(triangle)
         plt.fill(triangle[:, 0], triangle[:, 1], 'orange')
 
+    # Add car to plot
     add_image_to_plot(ax, image, 0.5, 0.65, 0.93, image_envelope_coords)
 
     # Add a title to the plot
