@@ -3,10 +3,11 @@ import numpy as np
 import pandas as pd
 from tabulate import tabulate
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+from shapely.geometry import LineString, Polygon
 
 
 # Function to add an image to the LiDAR plot
-def add_image_to_plot(ax, img, zoom, x_offset, y_offset):
+def add_image_to_plot(ax, img, zoom, x_offset, y_offset, envelope_coords):
     # Create an image box
     imagebox = OffsetImage(img, zoom=zoom)
     # Place the image at the given offset
@@ -14,10 +15,17 @@ def add_image_to_plot(ax, img, zoom, x_offset, y_offset):
     # Add the image to the plot
     ax.add_artist(ab)
 
+    envelope = Polygon(envelope_coords)
+    x, y = envelope.exterior.xy
+    ax.plot(x, y, color="purple")
 
-def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_triangles, triangle_height, triangle_width, plot_name, image, angle_offset=0):
+
+def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_triangles, triangle_height, triangle_width, plot_name, image_envelope_coords, image, angle_offset=0):
     # Set the origin for all lines
     origin = [0, 1.3]
+
+    # Create a polygon for the image envelope
+    image_envelope = Polygon(image_envelope_coords)
 
     # Convert field of view to radians
     field_of_view_radians = np.radians(field_of_view_degrees)
@@ -58,6 +66,14 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
                     line_hit_cone = True
                     break
 
+        line = LineString([origin, end_point])
+        if line.intersects(image_envelope):
+            # Calculate the intersection point
+            intersection_point = line.intersection(image_envelope)
+            end_point = intersection_point.xy[0]
+            line_hit_cone = True
+            break
+
         # Plot the line with the specified color
         plt.plot([origin[0], end_point[0] + origin[0]], [origin[1], end_point[1] + origin[1]], color=line_color)
 
@@ -83,7 +99,7 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
         triangle = np.array(triangle)
         plt.fill(triangle[:, 0], triangle[:, 1], 'orange')
 
-    add_image_to_plot(ax, image, 0.5, 0.65, 0.93)
+    add_image_to_plot(ax, image, 0.5, 0.65, 0.93, image_envelope_coords)
 
     # Add a title to the plot
     plt.title(plot_name)
@@ -126,6 +142,9 @@ different_lidar_configs = different_lidar_configs[:1]
 # Calculate the distance to each cone
 cone_distances = [5 * i for i in range(1, 9)]
 
+# Define the coordinates for the car envelope
+image_envelope_coords = [(0.0, 0.4), (0.3, 0.4), (0.3, 0.8), (0.0, 0.8)]
+
 # Initialize DataFrame
 df = pd.DataFrame({"Cone Distance (m)": cone_distances})
 
@@ -134,7 +153,7 @@ image = plt.imread("cm24.png")
 
 # Plotting each configuration and updating DataFrame
 for config in different_lidar_configs:
-    hits = plot_lines_and_shadows(**config, image=image)
+    hits = plot_lines_and_shadows(**config, image_envelope_coords=image_envelope_coords, image=image)
     df[config["plot_name"]] = hits
 
 for config in different_lidar_configs:
