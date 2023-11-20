@@ -97,6 +97,7 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
 
     # Add a title to the plot
     plt.title(plot_name)
+    plt.savefig(plot_name + ".png") if save_plots else None
     plt.show()
 
     return cone_hits
@@ -136,6 +137,7 @@ different_lidar_configs = [
 
 # Calculate the distance to each cone
 cone_distances = [5 * i for i in range(1, 9)]
+save_plots = False
 
 # Define the coordinates for the car envelope
 image_envelope_coords = [(0.2, 0.6), (1.2, 0.95), (2.3, 0.85), (2.3, 0.35), (1.2, 0.2), (1, 0.2), (1, 0.2), (0.2, 0.6)]
@@ -163,6 +165,7 @@ plt.xlabel('Cone Distance (m)')
 plt.ylabel('Number of Hits')
 plt.legend()
 plt.grid(True)
+plt.savefig("lidar_comparison.png") if save_plots else None
 plt.show()
 
 # Set index for DataFrame
