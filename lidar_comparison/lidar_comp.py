@@ -135,7 +135,7 @@ different_lidar_configs = [
         "angle_offset": -5
     }
 ]
-different_lidar_configs = different_lidar_configs[:1]
+
 # Calculate the distance to each cone
 cone_distances = [5 * i for i in range(1, 9)]
 
