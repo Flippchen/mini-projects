@@ -2,9 +2,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from tabulate import tabulate
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 
 
-def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_triangles, triangle_height, triangle_width, plot_name, angle_offset=0):
+# Function to add an image to the LiDAR plot
+def add_image_to_plot(ax, img, zoom, x_offset, y_offset):
+    # Create an image box
+    imagebox = OffsetImage(img, zoom=zoom)
+    # Place the image at the given offset
+    ab = AnnotationBbox(imagebox, (x_offset, y_offset), frameon=False, pad=0)
+    # Add the image to the plot
+    ax.add_artist(ab)
+
+
+def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_triangles, triangle_height, triangle_width, plot_name,image, angle_offset=0):
     # Set the origin for all lines
     origin = [0, 1.3]
 
@@ -18,7 +29,7 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
     scaling_factor = 40.0
 
     # Set a large figure size
-    plt.figure(figsize=(50, 10))
+    fig, ax = plt.subplots(figsize=(50, 10))
 
     # Initialize a list to store the number of lines hitting each cone
     cone_hits = [0] * num_triangles
@@ -72,6 +83,8 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
         triangle = np.array(triangle)
         plt.fill(triangle[:, 0], triangle[:, 1], 'orange')
 
+    add_image_to_plot(ax, image, 0.5, 20, 2.5)
+
     # Add a title to the plot
     plt.title(plot_name)
     plt.show()
@@ -116,9 +129,12 @@ cone_distances = [5 * i for i in range(1, 9)]
 # Initialize DataFrame
 df = pd.DataFrame({"Cone Distance (m)": cone_distances})
 
+# Load car image
+image = plt.imread("cm24.png")
+
 # Plotting each configuration and updating DataFrame
 for config in different_lidar_configs:
-    hits = plot_lines_and_shadows(**config)
+    hits = plot_lines_and_shadows(**config, image=image)
     df[config["plot_name"]] = hits
 
 for config in different_lidar_configs:
