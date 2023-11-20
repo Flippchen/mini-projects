@@ -15,7 +15,7 @@ def add_image_to_plot(ax, img, zoom, x_offset, y_offset):
     ax.add_artist(ab)
 
 
-def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_triangles, triangle_height, triangle_width, plot_name,image, angle_offset=0):
+def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_triangles, triangle_height, triangle_width, plot_name, image, angle_offset=0):
     # Set the origin for all lines
     origin = [0, 1.3]
 
@@ -83,7 +83,7 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
         triangle = np.array(triangle)
         plt.fill(triangle[:, 0], triangle[:, 1], 'orange')
 
-    add_image_to_plot(ax, image, 0.5, 20, 2.5)
+    add_image_to_plot(ax, image, 0.5, 0.65, 0.93)
 
     # Add a title to the plot
     plt.title(plot_name)
@@ -122,7 +122,7 @@ different_lidar_configs = [
         "angle_offset": -5
     }
 ]
-
+different_lidar_configs = different_lidar_configs[:1]
 # Calculate the distance to each cone
 cone_distances = [5 * i for i in range(1, 9)]
 
