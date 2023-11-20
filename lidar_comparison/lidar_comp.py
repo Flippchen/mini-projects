@@ -72,7 +72,7 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
         plt.plot([origin[0], end_point[0] + origin[0]], [origin[1], end_point[1] + origin[1]], color=line_color if not line_hit_envelope else 'pink')
 
     # Set plot limits
-    plt.xlim(0, 40)
+    plt.xlim(-1.2, 40)
     plt.ylim(0, 5)
 
     # Set aspect ratio to be equal
