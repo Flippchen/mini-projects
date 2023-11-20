@@ -68,8 +68,6 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
                     cone_hits[i - 1] += 1 and not line_hit_envelope
                     break
 
-
-
         # Plot the line with the specified color
         plt.plot([origin[0], end_point[0] + origin[0]], [origin[1], end_point[1] + origin[1]], color=line_color if not line_hit_envelope else 'pink')
 
@@ -140,7 +138,7 @@ different_lidar_configs = [
 cone_distances = [5 * i for i in range(1, 9)]
 
 # Define the coordinates for the car envelope
-image_envelope_coords = [(0.2,0.6), (1.2,0.95), (2.3, 0.85), (2.3, 0.35), (1.2, 0.2), (1, 0.2), (1, 0.2), (0.2, 0.6)]
+image_envelope_coords = [(0.2, 0.6), (1.2, 0.95), (2.3, 0.85), (2.3, 0.35), (1.2, 0.2), (1, 0.2), (1, 0.2), (0.2, 0.6)]
 
 # Initialize DataFrame
 df = pd.DataFrame({"Cone Distance (m)": cone_distances})
