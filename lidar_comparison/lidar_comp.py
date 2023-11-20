@@ -47,11 +47,14 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
         # Extend the lines until the end of the graph with scaling
         angle += angle_offset / 100
         end_point = [scaling_factor * np.cos(angle), scaling_factor * np.sin(angle)]
-
-        # Flag to check if a line has hit a cone
-        line_hit_cone = False
+        line_hit_envelope = False
+        endpoint_copy = end_point.copy()
 
         # Determine if the line intersects with any triangle (cone)
+        line = LineString([origin, endpoint_copy])
+        if line.intersects(image_envelope):
+            line_hit_envelope = True
+
         for i in range(1, num_triangles + 1):
             base_x = 5 * i
             # Check if the line intersects with the triangle
@@ -62,20 +65,13 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
                     # Adjust end_point to the intersection
                     end_point = [base_x - origin[0], intersect_y - origin[1]]
                     # Increment the hit count for this cone
-                    cone_hits[i - 1] += 1
-                    line_hit_cone = True
+                    cone_hits[i - 1] += 1 and not line_hit_envelope
                     break
 
-        line = LineString([origin, end_point])
-        if line.intersects(image_envelope):
-            # Calculate the intersection point
-            intersection_point = line.intersection(image_envelope)
-            end_point = intersection_point.xy[0]
-            line_hit_cone = True
-            break
+
 
         # Plot the line with the specified color
-        plt.plot([origin[0], end_point[0] + origin[0]], [origin[1], end_point[1] + origin[1]], color=line_color)
+        plt.plot([origin[0], end_point[0] + origin[0]], [origin[1], end_point[1] + origin[1]], color=line_color if not line_hit_envelope else 'pink')
 
     # Set plot limits
     plt.xlim(0, 40)
