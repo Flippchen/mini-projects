@@ -116,6 +116,7 @@ different_lidar_configs = [
         "num_triangles": 8,
         "triangle_height": 0.4,
         "triangle_width": 0.4,
+        "angle_offset": -5,
         "plot_name": "64 Channels, 45° FOV"
     },
     {
