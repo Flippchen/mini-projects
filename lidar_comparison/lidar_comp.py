@@ -107,39 +107,77 @@ def plot_lines_and_shadows(num_lines, field_of_view_degrees, line_color, num_tri
 
 different_lidar_configs = [
     {
-        "num_lines": 64,
+        "num_lines": 32,
         "field_of_view_degrees": 45,
         "line_color": 'green',
         "num_triangles": 8,
         "triangle_height": 0.4,
         "triangle_width": 0.4,
-        "angle_offset": -5,
-        "plot_name": "64 Channels, 45° FOV"
+        "plot_name": "32 Channels OS1 Normal, 45° FOV"
+    },
+    {
+        "num_lines": 64,
+        "field_of_view_degrees": 45,
+        "line_color": 'purple',
+        "num_triangles": 8,
+        "triangle_height": 0.4,
+        "triangle_width": 0.4,
+        "plot_name": "64 Channels OS1 Normal, 45° FOV"
     },
     {
         "num_lines": 128,
         "field_of_view_degrees": 45,
-        "line_color": 'blue',
+        "line_color": 'orange',
         "num_triangles": 8,
         "triangle_height": 0.4,
         "triangle_width": 0.4,
-        "plot_name": "128 Channels, 45° FOV"
+        "plot_name": "128 Channels OS1 Normal, 45° FOV"
     },
     {
-        "num_lines": 128,
+        "num_lines": 32,
         "field_of_view_degrees": 22.5,
         "line_color": 'red',
         "num_triangles": 8,
         "triangle_height": 0.4,
         "triangle_width": 0.4,
-        "plot_name": "128 Channels, 22.5° FOV",
+        "angle_offset": -22.5,
+        "plot_name": "32 Channels OS1 Below Horizon, 22.5° FOV"
+    },
+    {
+        "num_lines": 64,
+        "field_of_view_degrees": 22.5,
+        "line_color": 'black',
+        "num_triangles": 8,
+        "triangle_height": 0.4,
+        "triangle_width": 0.4,
+        "angle_offset": -22.5,
+        "plot_name": "64 Channels OS1 Below Horizon, 22.5° FOV"
+    },
+    {
+        "num_lines": 128,
+        "field_of_view_degrees": 22.5,
+        "line_color": 'turquoise',
+        "num_triangles": 8,
+        "triangle_height": 0.4,
+        "triangle_width": 0.4,
+        "angle_offset": -22.5,
+        "plot_name": "128 Channels OS1 Below Horizon, 22.5° FOV"
+    },
+    {
+        "num_lines": 128,
+        "field_of_view_degrees": 22.5,
+        "line_color": 'lightgrey',
+        "num_triangles": 8,
+        "triangle_height": 0.4,
+        "triangle_width": 0.4,
+        "plot_name": "128 Channels OS2 Normal, 22.5° FOV",
         "angle_offset": -5
     }
 ]
 
 # Calculate the distance to each cone
 cone_distances = [5 * i for i in range(1, 9)]
-save_plots = False
+save_plots = True
 
 # Define the coordinates for the car envelope
 image_envelope_coords = [(0.2, 0.6), (1.2, 0.95), (2.3, 0.85), (2.3, 0.35), (1.2, 0.2), (1, 0.2), (1, 0.2), (0.2, 0.6)]
