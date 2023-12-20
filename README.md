@@ -26,3 +26,5 @@ This is a simple application that shows how a perceptron works.
 Shows how to create a simple models using Keras.
 ### 12. LiDAR data visualization
 This is a simple application that visualizes different LiDAR Setups in comparison to each other. Used for Formula Student Teams.
+### 13. PDF Splitter
+This is a simple application that splits a PDF file into multiple PDF files. Just defines categories and colors and the application will split the PDF file.
