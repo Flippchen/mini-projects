@@ -7,11 +7,11 @@ def detect_color(img):
     top_right_pixel = img.getpixel((img.width - 10, 10))
     print(top_right_pixel)
     if top_right_pixel == (255, 54, 54):  # Red
-        return 'red'
+        return 'questions_to_answer'
     elif top_right_pixel == (20, 71, 255):  # Blue
-        return 'blue'
+        return 'study_notes'
     elif top_right_pixel == (153, 51, 255):  # Purple
-        return 'purple'
+        return 'cheat_sheet'
     else:
         return 'other'
 
@@ -20,9 +20,9 @@ def split_pdf_by_color(pdf_path):
     images = convert_from_path(pdf_path)
     reader = PyPDF2.PdfReader(pdf_path)
     writers = {
-        'red': PyPDF2.PdfWriter(),
-        'blue': PyPDF2.PdfWriter(),
-        'purple': PyPDF2.PdfWriter(),
+        'questions_to_answer': PyPDF2.PdfWriter(),
+        'study_notes': PyPDF2.PdfWriter(),
+        'cheat_sheet': PyPDF2.PdfWriter(),
         'all': PyPDF2.PdfWriter(),
         'other': PyPDF2.PdfWriter()
     }
