@@ -43,4 +43,5 @@ def split_pdf_by_color(pdf_path):
             writer.write(f)
 
 
-
+if __name__ == '__main__':
+    split_pdf_by_color('DWH_Folien.pdf')
