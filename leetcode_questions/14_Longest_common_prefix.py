@@ -11,6 +11,6 @@ class Solution:
             for other in strs:
                 # Compare characters from other strings at the same position
                 if other[i] != char:
-                    # If mismatch, return the substring from the start to the current index
+                    # If mismatched, return the substring from the start to the current index
                     return shortest[:i]
         return shortest
