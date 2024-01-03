@@ -14,7 +14,7 @@ from rl.memory import SequentialMemory
 def create_model(states, actions):
     model = Sequential(
         [
-            Flatten(input_shape=(1, states)),
+            Flatten(input_shape=(1, )+ states),
             Dense(24, activation='relu'),
             Dense(24, activation='relu'),
             Dense(actions, activation='linear')
@@ -38,11 +38,12 @@ def create_agent(model, actions):
     return dqn
 
 
-if "main" == __name__:
-    # tf.compat.v1.disable_eager_execution() activate if needed
-    env = gym.make('CartPole-v1')
+if "__main__" == __name__:
+    # Activate if needed
+    tf.compat.v1.disable_eager_execution()
+    env = gym.make('CarRacing-v2', continuous=False)
 
-    states = env.observation_space.shape[0]
+    states = env.observation_space.shape
     actions = env.action_space.n
 
     model = create_model(states, actions)
