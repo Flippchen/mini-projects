@@ -45,3 +45,7 @@ agent.fit(env, nb_steps=10000, visualize=False, verbose=1)
 
 results = agent.test(env, nb_episodes=10, visualize=True)
 print(np.mean(results.history["episode_reward"]))
+
+agent.save_weights('agent_weights.h5f', overwrite=True)
+
+env.close()
