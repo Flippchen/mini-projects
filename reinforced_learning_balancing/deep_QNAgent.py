@@ -29,3 +29,13 @@ env = gym.make('CartPole-v1')
 
 states = env.observation_space.shape[0]
 actions = env.action_space.n
+
+model = create_model(states, actions)
+agent = DQNAgent(
+    model=model,
+    memory=SequentialMemory(limit=50000, window_length=1),
+    policy=BoltzmannGumbelQPolicy(),
+    nb_actions=actions,
+    nb_steps_warmup=10,
+    target_model_update=1e-2
+)
