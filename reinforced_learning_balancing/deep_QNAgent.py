@@ -39,3 +39,9 @@ agent = DQNAgent(
     nb_steps_warmup=10,
     target_model_update=1e-2
 )
+
+agent.compile(Adam(lr=1e-3), metrics=['mae'])
+agent.fit(env, nb_steps=10000, visualize=False, verbose=1)
+
+results = agent.test(env, nb_episodes=10, visualize=True)
+print(np.mean(results.history["episode_reward"]))
