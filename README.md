@@ -29,4 +29,4 @@ This is a simple application that visualizes different LiDAR Setups in compariso
 ### 13. PDF Splitter
 This is a simple application that splits a PDF file into multiple PDF files. Just defines categories and colors and the application will split the PDF file.
 ### 14. Reinforced Learning with OpenAI Gym
-This is a simple application that uses OpenAI Gym to train and test a model to play the CartPole game.
+This is a simple application that uses OpenAI Gym to train and test a model to play the CartPole/CarRacing game.
