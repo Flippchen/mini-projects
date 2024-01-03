@@ -2,3 +2,6 @@ gym<0.26.0
 tensorflow<=2.11
 keras-rl
 pyglet
+swig
+box2d
+box2d-kengz
