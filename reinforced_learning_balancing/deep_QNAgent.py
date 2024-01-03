@@ -24,28 +24,36 @@ def create_model(states, actions):
     return model
 
 
-# tf.compat.v1.disable_eager_execution() activate if needed
-env = gym.make('CartPole-v1')
+def create_agent(model, actions):
+    policy = BoltzmannGumbelQPolicy()
+    memory = SequentialMemory(limit=50000, window_length=1)
+    dqn = DQNAgent(
+        model=model,
+        memory=memory,
+        policy=policy,
+        nb_actions=actions,
+        nb_steps_warmup=10,
+        target_model_update=1e-2
+    )
+    return dqn
 
-states = env.observation_space.shape[0]
-actions = env.action_space.n
 
-model = create_model(states, actions)
-agent = DQNAgent(
-    model=model,
-    memory=SequentialMemory(limit=50000, window_length=1),
-    policy=BoltzmannGumbelQPolicy(),
-    nb_actions=actions,
-    nb_steps_warmup=10,
-    target_model_update=1e-2
-)
+if "main" == __name__:
+    # tf.compat.v1.disable_eager_execution() activate if needed
+    env = gym.make('CartPole-v1')
 
-agent.compile(Adam(lr=1e-3), metrics=['mae'])
-agent.fit(env, nb_steps=10000, visualize=False, verbose=1)
+    states = env.observation_space.shape[0]
+    actions = env.action_space.n
 
-results = agent.test(env, nb_episodes=10, visualize=True)
-print(np.mean(results.history["episode_reward"]))
+    model = create_model(states, actions)
+    agent = create_agent(model, actions)
 
-agent.save_weights('agent_weights.h5f', overwrite=True)
+    agent.compile(Adam(lr=1e-3), metrics=['mae'])
+    agent.fit(env, nb_steps=10000, visualize=False, verbose=1)
 
-env.close()
+    results = agent.test(env, nb_episodes=10, visualize=True)
+    print(np.mean(results.history["episode_reward"]))
+
+    agent.save_weights('agent_weights.h5f', overwrite=True)
+
+    env.close()
