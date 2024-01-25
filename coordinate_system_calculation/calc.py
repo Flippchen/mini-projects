@@ -28,5 +28,10 @@ intrinsic_matrix = np.array([
 ])
 intrinsic_matrix_inv = np.linalg.inv(intrinsic_matrix)
 
+# Calculate the rotation matrix from Euler angles
+r = R.from_euler('xyz', [roll, pitch, yaw], degrees=True)
+rotation_matrix = r.as_matrix()
 
+# Translation vector
+translation_vector = np.array([x, y, z])
 
