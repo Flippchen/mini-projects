@@ -46,7 +46,7 @@ P_Image = np.array([u, v, 1])
 P_camera = intrinsic_matrix_inv @ P_Image
 
 # Normalize the vector
-P_camera = P_camera * d
+P_camera = P_camera * d / np.linalg.norm(P_camera)
 
 # Convert camera coordinates to vehicle coordinates
 P_vehicle = rt_matrix @ np.append(P_camera, 1)
