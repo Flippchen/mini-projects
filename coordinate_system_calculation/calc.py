@@ -20,4 +20,13 @@ x, y, z = 500, 160, 1140
 # Euler angles for rotation (in degrees)
 roll, pitch, yaw = 100, 0, 90
 
+# Intrinsic matrix and its inverse
+intrinsic_matrix = np.array([
+    [fx, 0, cx],
+    [0, fy, cy],
+    [0, 0, 1]
+])
+intrinsic_matrix_inv = np.linalg.inv(intrinsic_matrix)
+
+
 
