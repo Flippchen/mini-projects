@@ -35,3 +35,13 @@ rotation_matrix = r.as_matrix()
 # Translation vector
 translation_vector = np.array([x, y, z])
 
+# Extrinsic matrix (Rt matrix)
+rt_matrix = np.hstack((rotation_matrix, translation_vector.reshape(-1, 1)))
+rt_matrix = np.vstack((rt_matrix, np.array([0, 0, 0, 1])))
+
+# Position of the object in the image frame (homogeneous coordinates)
+P_Image = np.array([u, v, 1])
+
+# Convert image coordinates to camera coordinates
+P_camera = intrinsic_matrix_inv @ P_Image
+
