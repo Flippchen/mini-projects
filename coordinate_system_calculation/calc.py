@@ -45,3 +45,14 @@ P_Image = np.array([u, v, 1])
 # Convert image coordinates to camera coordinates
 P_camera = intrinsic_matrix_inv @ P_Image
 
+# Normalize the vector
+P_camera = P_camera * d
+
+# Convert camera coordinates to vehicle coordinates
+P_vehicle = rt_matrix @ np.append(P_camera, 1)
+
+# Round the solution to three decimal places
+P_vehicle_m = P_vehicle / 1000
+P_vehicle_rounded = np.round(P_vehicle_m[:3], 3)  # Only take the first three components (x, y, z)
+
+print(P_vehicle_rounded)
