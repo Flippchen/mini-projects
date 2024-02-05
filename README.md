@@ -32,3 +32,5 @@ This is a simple application that splits a PDF file into multiple PDF files. Jus
 This is a simple application that uses OpenAI Gym to train and test a model to play the CartPole/CarRacing game.
 ### 15. FS Quiz
 This is a collection of tools to answer Formula Student registration quizzes.
+### 16. KIT Classifier Challenge
+Challenge to classify different Images for the ML1 class at KIT.
