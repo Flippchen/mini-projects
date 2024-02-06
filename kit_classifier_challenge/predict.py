@@ -9,9 +9,8 @@ from tensorflow import keras
 img_height = 300
 img_width = 300
 img_folder = '/home/luke/test_data/test'
-model_path = '/tmp/pycharm_project_534/training/test_ole_best_model.h5'
+model_path = '/tmp/pycharm_project_534/training/kit_best_model.h5'
 export_folder = '/home/luke'
-# Set model Type to 'all_specific_model_variants' or 'car_type' or "specific_model_variants"
 classes = ['Bicycle', 'Bridge', 'Bus', 'Car', 'Chimney', 'Crosswalk', 'Hydrant', 'Motorcycle', 'Other', 'Palm', 'Stair', 'Traffic Light']
 
 # Load model
