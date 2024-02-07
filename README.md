@@ -33,4 +33,4 @@ This is a simple application that uses OpenAI Gym to train and test a model to p
 ### 15. FS Quiz
 This is a collection of tools to answer Formula Student registration quizzes.
 ### 16. KIT Classifier Challenge
-Challenge to classify different Images for the ML1 class at KIT.
+Challenge to classify different Images for the ML1 class at KIT. This code let to place 9th on the leaderboard.
