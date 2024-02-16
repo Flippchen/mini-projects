@@ -13,6 +13,8 @@ import warnings
 from helpers import load_dataset, show_sample_batch, show_batch_shape, create_augmentation_layer, \
     show_augmented_batch, suppress_tf_warnings, plot_model_score
 
+import keras_tuner
+
 
 # Supress warnings
 warnings.filterwarnings('ignore')
@@ -31,6 +33,7 @@ name = "kit"
 # Set to True to load trained model
 load_model = False
 load_path = "./kit_best_model.h5"
+train = False
 # Config
 path_addon = 'train_val_data'
 config = {
@@ -151,3 +154,6 @@ plot_model_score(history, name)
 
 # Save model
 model.save(f"{name}.h5")
+
+# TODO: Use Vit Model
+# TODO: Use Keras tuner
