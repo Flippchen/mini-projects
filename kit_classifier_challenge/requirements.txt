@@ -5,3 +5,5 @@ matplotlib
 sklearn
 numpy
 logging
+keras-cv
+keras-tuner
