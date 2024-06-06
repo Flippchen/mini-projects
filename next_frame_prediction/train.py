@@ -107,3 +107,21 @@ model.compile(
     loss=keras.losses.binary_crossentropy,
     optimizer=keras.optimizers.Adam(),
 )
+
+# Define some callbacks to improve training.
+early_stopping = keras.callbacks.EarlyStopping(monitor="val_loss", patience=10)
+reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor="val_loss", patience=5)
+
+# Define modifiable training hyperparameters.
+epochs = 20
+batch_size = 5
+
+# Fit the model to the training data.
+model.fit(
+    x_train,
+    y_train,
+    batch_size=batch_size,
+    epochs=epochs,
+    validation_data=(x_val, y_val),
+    callbacks=[early_stopping, reduce_lr],
+)
