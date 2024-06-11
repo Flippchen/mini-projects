@@ -113,7 +113,7 @@ early_stopping = keras.callbacks.EarlyStopping(monitor="val_loss", patience=10)
 reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor="val_loss", patience=5)
 
 # Define modifiable training hyperparameters.
-epochs = 20
+epochs = 5
 batch_size = 5
 
 # Fit the model to the training data.
