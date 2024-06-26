@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         def backtrack(S='', left=0, right=0):
