@@ -47,3 +47,5 @@ class Solution(object):
     #         if not (i >= 0 and j >= 0 and S[i] == T[j]):
     #             return i == j == -1
     #         i, j = i - 1, j - 1
+
+# Modified on 2024-09-01 14:19:55.772430
