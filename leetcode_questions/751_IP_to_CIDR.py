@@ -21,3 +21,5 @@ class Solution(object):
             start += 1 << (32 - mask)
             n -= 1 << (32 - mask)
         return ans
+
+# Modified on 2024-09-01 14:19:55.820508
