@@ -41,3 +41,5 @@ class Solution(object):
                 res += self.calc_patterns(used, i, length - 1)
                 used[i] = False
         return res
+
+# Modified on 2024-09-01 14:19:55.938618
