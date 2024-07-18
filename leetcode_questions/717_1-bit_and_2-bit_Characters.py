@@ -36,3 +36,5 @@ class Solution:
     #         pos -= 1
     #     # check if second last zero is even
     #     return (len(bits) - pos) % 2 == 0
+
+# Modified on 2024-09-01 14:19:55.900622
