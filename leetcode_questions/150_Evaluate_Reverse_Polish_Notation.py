@@ -22,3 +22,4 @@ class Solution(object):
                     a = int(a * 1.0 / b)
                 stack.append(a)
         return stack[-1]
+# Modified on 2024-09-01 14:19:56.011622
