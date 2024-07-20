@@ -29,3 +29,5 @@ class Solution(object):
 if __name__ == '__main__':
     s = Solution()
     print s.isUgly(-2147483648)
+
+# Modified on 2024-09-01 14:19:55.974324
