@@ -29,3 +29,4 @@ if __name__ == '__main__':
     # begin
     s = Solution()
     print s.nthUglyNumber(10)
+# Modified on 2024-09-01 14:19:56.096805
