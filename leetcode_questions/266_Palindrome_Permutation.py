@@ -16,3 +16,5 @@ class Solution(object):
         if odd <= 1:
             return True
         return False
+
+# Modified on 2024-09-01 14:19:56.171129
