@@ -24,3 +24,5 @@ class Solution(object):
     #         else:
     #             right = mid - 1
     #     return left
+
+# Modified on 2024-09-01 14:19:56.194668
