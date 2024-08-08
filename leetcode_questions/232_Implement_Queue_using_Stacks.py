@@ -81,3 +81,4 @@ class Queue(object):
         :rtype: bool
         """
         return len(self.stack1) + len(self.stack2) == 0
+# Modified on 2024-09-01 14:19:56.295251
