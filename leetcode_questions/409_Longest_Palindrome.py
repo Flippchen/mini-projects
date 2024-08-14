@@ -20,3 +20,4 @@ class Solution:
         if len(char_map) != 0:
             ans += 1
         return ans
+# Modified on 2024-09-01 14:19:56.415687
