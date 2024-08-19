@@ -25,3 +25,4 @@ class Solution(object):
             self.explore(grid, i + 1, j)
         if j + 1 < len(grid[i]) and grid[i][j + 1] == '1':
             self.explore(grid, i, j + 1)
+# Modified on 2024-09-01 14:19:56.441324
