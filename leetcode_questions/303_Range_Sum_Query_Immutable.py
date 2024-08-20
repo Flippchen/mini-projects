@@ -22,3 +22,4 @@ class NumArray(object):
         # numArray = NumArray(nums)
         # numArray.sumRange(0, 1)
         # numArray.sumRange(1, 2)
+# Modified on 2024-09-01 14:19:56.493310
