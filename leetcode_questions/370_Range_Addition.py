@@ -16,3 +16,5 @@ class Solution(object):
         for i in range(1, length):
             res[i] = res[i] + res[i - 1]
         return res
+
+# Modified on 2024-09-01 14:19:56.592016
