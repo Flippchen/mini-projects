@@ -30,3 +30,5 @@ if __name__ == '__main__':
     s = Solution()
     print s.nthUglyNumber(10)
 # Modified on 2024-09-01 14:19:56.096805
+
+# Modified on 2024-09-15 22:35:08.724274
