@@ -3,27 +3,30 @@ name: "Daily Update Reminder"
 
 on:
   schedule:
-    # At 08:00 UTC every Monday (1) and Friday (5)
     - cron: '0 8 * * 1,5'
-  workflow_dispatch:  # allows manual triggering
+  workflow_dispatch:
 
 jobs:
   send-reminder:
     runs-on: ubuntu-latest
     env:
       DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      ROLE_ID: ${{ secrets.DISCORD_ROLE_ID }}  # store your Gruppe1 role ID here
     steps:
-      - name: Send Discord reminder
+      - name: Send Discord reminder with role mention
         run: |
-          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
-            echo "ERROR: DISCORD_WEBHOOK_URL is not set!"
+          if [ -z "$DISCORD_WEBHOOK_URL" ] || [ -z "$ROLE_ID" ]; then
+            echo "ERROR: DISCORD_WEBHOOK_URL or ROLE_ID is not set!"
             exit 1
           fi
 
-          # Customize the message as needed
-          PAYLOAD=$(jq -nc --arg content "🚨 Denkt an euer Daily Update! @Admin" '{content: $content}')
+          # Build payload: mention the role, and allow that mention
+          PAYLOAD=$(jq -nc \
+            --arg rid "<@&${ROLE_ID}>" \
+            --argjson roles "[\"${ROLE_ID}\"]" \
+            '{content: "\($rid) 🚨 Denkt an euer Daily Update!", allowed_mentions: {roles: $roles}}'
+          )
 
-          # Post to Discord
           curl -X POST \
                -H "Content-Type: application/json" \
                -d "$PAYLOAD" \
