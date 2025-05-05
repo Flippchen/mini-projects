@@ -1,0 +1,30 @@
+# .github/workflows/discord-reminder.yml
+name: "Daily Update Reminder"
+
+on:
+  schedule:
+    # At 08:00 UTC every Monday (1) and Friday (5)
+    - cron: '0 8 * * 1,5'
+  workflow_dispatch:  # allows manual triggering
+
+jobs:
+  send-reminder:
+    runs-on: ubuntu-latest
+    env:
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+    steps:
+      - name: Send Discord reminder
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "ERROR: DISCORD_WEBHOOK_URL is not set!"
+            exit 1
+          fi
+
+          # Customize the message as needed
+          PAYLOAD=$(jq -nc --arg content "🚨 **Reminder:** Please send today’s daily update!" '{content: $content}')
+
+          # Post to Discord
+          curl -X POST \
+               -H "Content-Type: application/json" \
+               -d "$PAYLOAD" \
+               "$DISCORD_WEBHOOK_URL"
