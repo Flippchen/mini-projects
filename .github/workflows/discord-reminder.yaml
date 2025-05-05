@@ -21,7 +21,7 @@ jobs:
           fi
 
           # Customize the message as needed
-          PAYLOAD=$(jq -nc --arg content "🚨 **Reminder:** Please send today’s daily update!" '{content: $content}')
+          PAYLOAD=$(jq -nc --arg content "🚨 Denkt an euer Daily Update! @Admin" '{content: $content}')
 
           # Post to Discord
           curl -X POST \
