@@ -2,8 +2,8 @@
 name: "Daily Update Reminder"
 
 on:
-  schedule:
-    - cron: '0 8 * * 3'
+  #schedule:
+  #  - cron: '0 8 * * 3'
   workflow_dispatch:
 
 jobs:
